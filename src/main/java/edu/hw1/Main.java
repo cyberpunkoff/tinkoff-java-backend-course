@@ -11,6 +11,7 @@ import org.apache.logging.log4j.Logger;
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public final class Main {
+    private static final int SECONDS_IN_MINUTE = 60;
     private final static Logger LOGGER = LogManager.getLogger();
 
     private Main() {
@@ -20,7 +21,6 @@ public final class Main {
         LOGGER.info("Hello, world!");
     }
 
-    @SuppressWarnings("MagicNumber")
     public static int minutesToSeconds(String duration) {
         Objects.requireNonNull(duration);
 
@@ -40,11 +40,11 @@ public final class Main {
             return -1;
         }
 
-        if (seconds >= 60) {
+        if (seconds >= SECONDS_IN_MINUTE) {
             return -1;
         }
 
-        return seconds + minutes * 60;
+        return seconds + minutes * SECONDS_IN_MINUTE;
     }
 
     @SuppressWarnings("MagicNumber")
