@@ -30,7 +30,7 @@ public class SampleTest {
     void convertVideoLengthBadInput() {
         String duration = "10:1337";
 
-        int secondsDuration = Main.minutesToSeconds(duration);
+        int secondsDuration = Task1.minutesToSeconds(duration);
 
         assertThat(secondsDuration).isEqualTo(-1);
     }
@@ -40,7 +40,7 @@ public class SampleTest {
     void convertVideoLength() {
         String duration = "10:10";
 
-        int secondsDuration = Main.minutesToSeconds(duration);
+        int secondsDuration = Task1.minutesToSeconds(duration);
 
         assertThat(secondsDuration).isEqualTo(610);
     }
@@ -52,7 +52,7 @@ public class SampleTest {
         "0, 1"
     })
     void countDigits(int number, int expected) {
-        int digitsAmount = Main.countDigits(number);
+        int digitsAmount = Task2.countDigits(number);
 
         assertThat(digitsAmount).isEqualTo(expected);
     }
@@ -68,7 +68,7 @@ public class SampleTest {
     @ParameterizedTest
     @MethodSource("isNestableArrayTestParameters")
     void isNestableArray(int[] firstArray, int[] secondArray, boolean expected) {
-        boolean isNestable = Main.isNestable(firstArray, secondArray);
+        boolean isNestable = Task3.isNestable(firstArray, secondArray);
 
         assertThat(isNestable).isEqualTo(expected);
     }
@@ -80,7 +80,7 @@ public class SampleTest {
         "оПомигети псаривьтс ртко!и, Помогите исправить строки!"
     })
     void fixStringTest(String input, String expected) {
-        String fixedString = Main.fixString(input);
+        String fixedString = Task4.fixString(input);
 
         assertThat(fixedString).isEqualTo(expected);
     }
@@ -93,7 +93,7 @@ public class SampleTest {
         "7778, false"
     })
     void checkPalindromeStringOne(int input, boolean expected) {
-        boolean result = Main.isPalindromeDescendant(input);
+        boolean result = Task5.isPalindromeDescendant(input);
 
         assertThat(result).isEqualTo(expected);
     }
@@ -105,7 +105,7 @@ public class SampleTest {
         int input = 8;
 
         // when
-        int result = Main.rotateRight(input, 1);
+        int result = Task7.rotateRight(input, 1);
 
         // then
         assertThat(result).isEqualTo(4);
@@ -118,7 +118,7 @@ public class SampleTest {
         int input = 16;
 
         // when
-        int result = Main.rotateLeft(input, 1);
+        int result = Task7.rotateLeft(input, 1);
 
         // then
         assertThat(result).isEqualTo(1);
@@ -153,7 +153,7 @@ public class SampleTest {
     @ParameterizedTest
     @MethodSource("knightsTestParameters")
     void knightsTest(int[][] deck, boolean expected) {
-        boolean result = Main.knightBoardCapture(deck);
+        boolean result = Task8.knightBoardCapture(deck);
 
         assertThat(result).isEqualTo(expected);
     }
@@ -165,7 +165,7 @@ public class SampleTest {
         "6554, 4"
     })
     void countKTest(int n, int expected) {
-        int result = Main.countK(n);
+        int result = Task6.countK(n);
 
         assertThat(result).isEqualTo(expected);
     }
