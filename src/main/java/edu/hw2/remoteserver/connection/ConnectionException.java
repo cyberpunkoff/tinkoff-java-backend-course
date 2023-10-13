@@ -2,7 +2,6 @@ package edu.hw2.remoteserver.connection;
 
 public class ConnectionException extends RuntimeException {
     public ConnectionException() {
-        super();
     }
 
     public ConnectionException(String message) {

@@ -9,9 +9,9 @@ public final class CallerInfoTest {
     private CallerInfoTest() {
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         var result = CallerInfo.callingInfo();
 
         LOGGER.info(result.className() + " " + result.methodName());
-    }
+    }*/
 }
