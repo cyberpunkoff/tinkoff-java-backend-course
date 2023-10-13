@@ -1,18 +1,19 @@
-package edu.project1;
+package edu.project1.game;
 
 import edu.project1.exceptions.LetterGuessedException;
 import edu.project1.exceptions.LetterGuessedWrongException;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Word {
     private final String word;
-    private final ArrayList<Character> guessedLetters;
-    private final ArrayList<Character> guessedWrongLetters;
+    private final Set<Character> guessedLetters;
+    private final Set<Character> guessedWrongLetters;
 
-    Word(String word) {
+    public Word(String word) {
         this.word = word;
-        guessedLetters = new ArrayList<>();
-        guessedWrongLetters = new ArrayList<>();
+        guessedLetters = new HashSet<>();
+        guessedWrongLetters = new HashSet<>();
     }
 
     public char charAt(int index) {
@@ -55,4 +56,7 @@ public class Word {
         return false;
     }
 
+    public int getMistakesCounter() {
+        return guessedWrongLetters.size();
+    }
 }

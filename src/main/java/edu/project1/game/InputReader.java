@@ -1,8 +1,11 @@
-package edu.project1;
+package edu.project1.game;
 
 import java.util.Scanner;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class InputReader {
+    private final static Logger LOGGER = LogManager.getLogger();
     private final Scanner inputStream;
 
     InputReader() {
@@ -15,38 +18,39 @@ public class InputReader {
     }
 
     public char getLetter() {
-
-        System.out.print("Введите букву: ");
+        LOGGER.info("Введите букву: ");
         String userInput = inputStream.next().toUpperCase();
 
         if (userInput.length() > 1 || userInput.isBlank()) {
-            System.out.println("Введите ровно одну букву!");
+            LOGGER.info("Введите ровно одну букву!");
             return getLetter();
         }
 
         char letter = userInput.charAt(0);
 
-        if (isLetterCorrect(letter))
+        if (isLetterCorrect(letter)) {
             return letter;
+        }
 
-        System.out.println("Введите букву русского алфавита!");
+        LOGGER.info("Введите букву русского алфавита!");
         return getLetter();
 
     }
 
     public String getFilename() {
-        System.out.print("Введите имя файла: ");
-        String filename = inputStream.next();
-        return filename;
+        LOGGER.info("Введите имя файла: ");
+        return inputStream.next();
     }
 
     public boolean getChoice() {
-        System.out.print("Сделайте выбор (да/нет): ");
+        LOGGER.info("Сделайте выбор (да/нет): ");
         String userInput = inputStream.next().toLowerCase();
-        if (userInput.equals("да"))
+        if (userInput.equals("да")) {
             return true;
-        if (userInput.equals("нет"))
+        }
+        if (userInput.equals("нет")) {
             return false;
+        }
         return getChoice();
     }
 }

@@ -1,7 +1,12 @@
 package edu.project1;
 
-public class Main {
+import edu.project1.game.GameRunner;
+
+public final class Main {
+    private Main() {
+    }
+
     public static void main(String[] args) {
-        new Game().setup();
+        new GameRunner().setup();
     }
 }
