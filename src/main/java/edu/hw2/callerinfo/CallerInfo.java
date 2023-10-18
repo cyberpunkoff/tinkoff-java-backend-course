@@ -4,11 +4,9 @@ public final class CallerInfo {
     private CallerInfo() {
     }
 
-    public static CallingInfo callingInfo() {
-        var stackTrace = new Throwable().getStackTrace();
-        var stackFrame = stackTrace[stackTrace.length - 1];
-        var className = stackFrame.getClassName();
-
+    public static CallingInfo getCallingInfo() {
+        StackTraceElement[] stackTrace = new Throwable().getStackTrace();
+        StackTraceElement stackFrame = stackTrace[1];
         return new CallingInfo(stackFrame.getClassName(), stackFrame.getMethodName());
     }
 }

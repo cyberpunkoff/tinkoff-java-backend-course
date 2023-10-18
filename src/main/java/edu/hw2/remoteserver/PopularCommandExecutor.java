@@ -22,22 +22,27 @@ public final class PopularCommandExecutor {
     }
 
     private void tryExecute(String command) {
-        Connection connection = manager.getConnection();
-        ConnectionException exception = null;
-        int attempts = 0;
+        try (Connection connection = manager.getConnection()) {
+            ConnectionException exception = null;
+            int attempts = 0;
 
-        while (attempts < maxAttempts) {
-            try {
-                connection.execute(command);
-                break;
-            } catch (ConnectionException e) {
-                exception = e;
-                attempts++;
+            while (attempts < maxAttempts) {
+                try {
+                    connection.execute(command);
+                    break;
+                } catch (ConnectionException e) {
+                    exception = e;
+                    attempts++;
+                }
             }
-        }
 
-        if (attempts == maxAttempts) {
-            throw new ConnectionException(exception);
+            if (attempts == maxAttempts) {
+                throw new ConnectionException(exception);
+            }
+        } catch (ConnectionException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Error during closing connection");
         }
     }
 }
