@@ -1,4 +1,4 @@
-package edu.hw3;
+package edu.hw3.cipher;
 
 public final class AtbashCipher implements Cipher {
     public String encode(String input) {

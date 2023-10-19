@@ -1,4 +1,4 @@
-package edu.hw3;
+package edu.hw3.cipher;
 
 public interface Cipher {
     String encode(String input);
