@@ -10,6 +10,13 @@ public class FaultyConnection implements Connection {
     private static final Random RANDOM = new Random();
     private final static Logger LOGGER = LogManager.getLogger();
 
+    public FaultyConnection() {
+    }
+
+    public FaultyConnection(long seed) {
+        RANDOM.setSeed(seed);
+    }
+
     @Override
     public void execute(String command) {
         if (RANDOM.nextInt(ONE_HUNDRED) < CONNECTION_EXCEPTION_PROBABILITY * ONE_HUNDRED) {

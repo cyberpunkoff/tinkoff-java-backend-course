@@ -18,10 +18,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class RemoteServerTest {
+    static final long RANDOM_SEED = 1234;
+
     static Stream<Arguments> remoteConnectionArguments() {
         return Stream.of(
                 Arguments.of(new DefaultConnectionManager(), 50),
-                Arguments.of(new FaultyConnectionManager(), 100)
+                Arguments.of(new FaultyConnectionManager(RANDOM_SEED), 100)
         );
     }
 
