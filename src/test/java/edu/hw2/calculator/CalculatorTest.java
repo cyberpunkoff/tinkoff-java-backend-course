@@ -1,8 +1,7 @@
-package edu.hw2;
+package edu.hw2.calculator;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import edu.hw2.calculator.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CalculatorTest {

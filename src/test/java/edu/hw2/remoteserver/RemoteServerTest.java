@@ -1,7 +1,7 @@
-package edu.hw2;
+package edu.hw2.remoteserver;
 
-import edu.hw2.remoteserver.PopularCommandExecutor;
 import edu.hw2.remoteserver.connection.ConnectionException;
+import edu.hw2.remoteserver.connection.FaultyConnection;
 import edu.hw2.remoteserver.connectionmanager.ConnectionManager;
 import edu.hw2.remoteserver.connectionmanager.DefaultConnectionManager;
 import edu.hw2.remoteserver.connectionmanager.FaultyConnectionManager;
@@ -12,9 +12,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class RemoteServerTest {
-
     static Stream<Arguments> remoteConnectionArguments() {
         return Stream.of(
                 Arguments.of(new DefaultConnectionManager(), 5),
@@ -40,16 +43,16 @@ public class RemoteServerTest {
     @Test
     void faultyConnectionTest() {
         // given
-        ConnectionManager faultyConnectionManager = new FaultyConnectionManager();
-        PopularCommandExecutor popularCommandExecutor = new PopularCommandExecutor(faultyConnectionManager, 1);
+        FaultyConnection mockedFaultyConnection = mock(FaultyConnection.class);
+        FaultyConnectionManager mockedManager = mock(FaultyConnectionManager.class);
+        doThrow(new ConnectionException()).when(mockedFaultyConnection).execute(anyString());
+        when(mockedManager.getConnection()).thenReturn(mockedFaultyConnection);
+
+        PopularCommandExecutor popularCommandExecutor = new PopularCommandExecutor(mockedManager, 10);
 
         // when
-        assertThrows(ConnectionException.class, () -> {
-            for (int i = 0; i < 10; i++) {
-                popularCommandExecutor.updatePackages();
-            }
-        });
 
         // then
+        assertThrows(ConnectionException.class, popularCommandExecutor::updatePackages);
     }
 }
