@@ -1,5 +1,6 @@
 package edu.project1.game;
 
+import java.io.InputStream;
 import java.util.Scanner;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -12,6 +13,10 @@ public class InputReader {
         inputStream = new Scanner(System.in);
     }
 
+    InputReader(InputStream inputStream) {
+        this.inputStream = new Scanner(inputStream);
+    }
+
     private static boolean isLetterCorrect(char letter) {
         String russianAlphabet = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
         return russianAlphabet.indexOf(letter) != -1;
@@ -20,6 +25,10 @@ public class InputReader {
     public char getLetter() {
         LOGGER.info("Введите букву: ");
         String userInput = inputStream.next().toUpperCase();
+
+        if (userInput.equals("EXIT")) {
+            return '~'; // ~ как указатель на то, что пользователь решил выйти
+        }
 
         if (userInput.length() > 1 || userInput.isBlank()) {
             LOGGER.info("Введите ровно одну букву!");

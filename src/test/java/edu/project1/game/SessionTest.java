@@ -1,4 +1,4 @@
-package edu.project1;
+package edu.project1.game;
 
 import edu.project1.game.Session;
 import java.util.stream.Stream;

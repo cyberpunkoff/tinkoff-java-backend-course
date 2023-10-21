@@ -5,6 +5,7 @@ import edu.project1.dictionary.TextFileDictionary;
 import edu.project1.exceptions.LetterGuessedException;
 import edu.project1.exceptions.LetterGuessedWrongException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URISyntaxException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +25,11 @@ public class GameRunner {
         }
     }
 
+    public GameRunner(InputStream inputStream, Dictionary dictionary) {
+        input = new InputReader(inputStream);
+        this.dictionary = dictionary;
+    }
+
     public void run() {
         String word = dictionary.getRandomWord();
         Session gameSession = new Session(word);
@@ -33,6 +39,12 @@ public class GameRunner {
 
         while (!gameSession.isGameOver()) {
             char letter = input.getLetter();
+
+            if (letter == '~') {
+                LOGGER.info("Выход из игры...");
+                System.exit(0);
+            }
+
             try {
                 if (gameSession.guess(letter)) {
                     LOGGER.info("Вы угадали букву!");
@@ -79,6 +91,7 @@ public class GameRunner {
         LOGGER.info("Вы готовы начать?");
 
         while (input.getChoice()) {
+            LOGGER.info("Чтобы выйти из игры введите EXIT");
             LOGGER.info("Начнем игру!");
             run();
             LOGGER.info("Хотите сыграть еще раз?");

@@ -1,4 +1,4 @@
-package edu.project1;
+package edu.project1.game;
 
 import edu.project1.exceptions.LetterGuessedException;
 import edu.project1.exceptions.LetterGuessedWrongException;
