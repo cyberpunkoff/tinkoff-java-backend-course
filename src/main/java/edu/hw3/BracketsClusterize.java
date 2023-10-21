@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
-public class BracketsClusterize {
+public final class BracketsClusterize {
+    private BracketsClusterize() {
+    }
+
     public static List<String> clusterize(String input) {
         Stack<Character> brackets = new Stack<>();
         List<String> answer = new ArrayList<>();
@@ -23,6 +26,6 @@ public class BracketsClusterize {
             }
         }
 
-        return  answer;
+        return answer;
     }
 }

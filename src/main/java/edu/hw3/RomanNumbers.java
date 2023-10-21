@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import static java.util.Map.entry;
 
-public class RomanNumbers {
+public final class RomanNumbers {
     private final static Map<Integer, String> INTEGER_TO_ROMAN = Map.ofEntries(
         entry(1, "I"),
         entry(4, "IV"),
@@ -29,6 +29,9 @@ public class RomanNumbers {
         .stream()
         .sorted(Collections.reverseOrder())
         .toList();
+
+    private RomanNumbers() {
+    }
 
     public static String convertToRoman(int number) {
         int tempNumber = number;

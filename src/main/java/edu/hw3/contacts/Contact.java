@@ -1,7 +1,7 @@
 package edu.hw3.contacts;
 
-import org.jetbrains.annotations.NotNull;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
 public class Contact implements Comparable<Contact> {
     private String name;

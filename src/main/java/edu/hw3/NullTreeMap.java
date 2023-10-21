@@ -1,11 +1,20 @@
 package edu.hw3;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.TreeMap;
 
 public class NullTreeMap<K, V> extends TreeMap<K, V> {
     private static final Comparator<Comparable<Object>> NULL_COMPARATOR = new NullComparator();
+
+    public NullTreeMap() {
+        super(getComparator());
+    }
+
+    // TODO: разобраться, откуда Java берет этот M
+    @SuppressWarnings("unchecked")
+    private static <M> Comparator<M> getComparator() {
+        return (Comparator<M>) NULL_COMPARATOR;
+    }
 
     private final static class NullComparator implements Comparator<Comparable<Object>> {
         @Override
@@ -24,15 +33,5 @@ public class NullTreeMap<K, V> extends TreeMap<K, V> {
 
             return o1.compareTo(o2);
         }
-    }
-
-    public NullTreeMap() {
-        super(getComparator());
-    }
-
-    // TODO: разобраться, откуда Java берет этот M
-    @SuppressWarnings("unchecked")
-    private static <M> Comparator<M> getComparator() {
-        return (Comparator<M>) NULL_COMPARATOR;
     }
 }
