@@ -19,7 +19,7 @@ public class InputReaderTest {
 
     @Test
     void getChoiceTest() {
-        ByteArrayInputStream in = new ByteArrayInputStream("\n".getBytes());
+        ByteArrayInputStream in = new ByteArrayInputStream("да\n".getBytes());
         InputReader inputReader = new InputReader(in);
 
         boolean result = inputReader.getChoice();
