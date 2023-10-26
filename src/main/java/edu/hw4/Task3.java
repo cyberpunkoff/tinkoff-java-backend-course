@@ -15,6 +15,7 @@ public final class Task3 {
     public static Map<Animal.Type, Integer> countAnimalsOfTypes(List<Animal> animals) {
         // TODO: вот тут хочу еще сделать, чтобы для типов, которых нет в листе, в мапе хранился 0. Пока не придумал как.
         // list.forEach(e->map.putIfAbsent(e.getDepartment(), Collections.emptyList()));
-        return animals.stream().collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(e -> 1)));
+        return animals.stream()
+            .collect(Collectors.groupingBy(Animal::type, Collectors.summingInt(e -> 1)));
     }
 }
