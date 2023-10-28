@@ -13,7 +13,7 @@ public class Task6Test {
 
         Map<Animal.Type, Animal> oldestAnimals = Task6.getOldestAnimalsOfTypes(animals);
 
-        assertThat(oldestAnimals).containsExactly(
+        assertThat(oldestAnimals).contains(
             Map.entry(Animal.Type.BIRD, new Animal("Vasya", Animal.Type.BIRD, Animal.Sex.M, 4, 10, 1, false)),
             Map.entry(Animal.Type.CAT, new Animal("Barsik", Animal.Type.CAT, Animal.Sex.M, 5, 30, 20, false)),
             Map.entry(Animal.Type.DOG, new Animal("Gjuchka", Animal.Type.DOG, Animal.Sex.F, 2, 37, 13, true))

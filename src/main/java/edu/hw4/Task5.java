@@ -5,6 +5,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public final class Task5 {
+    private Task5() {
+    }
+
     public static Animal.Sex getPrevailingSex(List<Animal> animals) {
         return animals.stream()
             .collect(Collectors.groupingBy(Animal::sex, Collectors.counting()))

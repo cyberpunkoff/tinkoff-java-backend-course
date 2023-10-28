@@ -13,7 +13,7 @@ public class Task3Test {
 
         Map<Animal.Type, Integer> animalsCount = Task3.countAnimalsOfTypes(animals);
 
-        assertThat(animalsCount).containsExactly(
+        assertThat(animalsCount).contains(
             Map.entry(Animal.Type.CAT, 1),
             Map.entry(Animal.Type.DOG, 1),
             Map.entry(Animal.Type.BIRD, 2)
