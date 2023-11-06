@@ -2,11 +2,11 @@ package edu.project2.solvers;
 
 import edu.project2.maze.Cell;
 import edu.project2.maze.Maze;
-import java.util.List;
 import org.junit.jupiter.api.Test;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class BreadthFirstMazeSolverTest {
+public class DepthFirstMazeSolverTest {
     @Test
     void testSolveMaze() {
         Maze maze = new Maze(5, 5);

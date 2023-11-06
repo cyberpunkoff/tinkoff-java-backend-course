@@ -49,7 +49,6 @@ public class RecursiveBacktrackingMazeGenerator implements MazeGenerator {
         int[] dy = {0, -2, 0, 2};
 
         List<Integer> indexList = new ArrayList<>(List.of(0, 1, 2, 3));
-
         Collections.shuffle(indexList);
 
         for (int j = 0; j < dx.length; j++) {
