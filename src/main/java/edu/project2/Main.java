@@ -9,8 +9,8 @@ import edu.project2.solvers.BreadthFirstMazeSolver;
 import edu.project2.solvers.MazeSolver;
 
 public final class Main {
-    private final static int MAZE_WIDTH = 100;
-    private final static int MAZE_HEIGHT = 100;
+    private final static int MAZE_WIDTH = 20;
+    private final static int MAZE_HEIGHT = 15;
 
     private Main() {
     }

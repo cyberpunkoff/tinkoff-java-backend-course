@@ -44,6 +44,7 @@ public class BreadthFirstMazeSolver implements MazeSolver {
             target = path.get(target);
         }
 
+        pathCells.add(start);
         maze.setSolution(pathCells);
     }
 

@@ -9,8 +9,6 @@ import java.util.Stack;
 
 public class RecursiveBacktrackingMazeGenerator implements MazeGenerator {
     @Override public void generateMaze(Maze maze) {
-        int startX = 0;
-        int startY = 0;
         Cell currentCell = maze.getCell(1, 1);
 
         Stack<Cell> cells = new Stack<>();

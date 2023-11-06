@@ -7,7 +7,6 @@ public class Maze {
     private Cell[][] map;
     private final int width;
     private final int height;
-
     private List<Cell> solution = new ArrayList<>();
 
     public Maze(int width, int height) {
