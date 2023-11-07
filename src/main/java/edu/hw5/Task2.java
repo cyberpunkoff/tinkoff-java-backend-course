@@ -26,9 +26,8 @@ public final class Task2 {
     }
 
     public static LocalDate getClosestFridayTheThirteenForDate(LocalDate date) {
-        LocalDate current = date.getDayOfMonth() > THIRTEEN ?
-            date.plusMonths(1).withDayOfMonth(THIRTEEN) :
-            date.withDayOfMonth(THIRTEEN);
+        LocalDate current = date.getDayOfMonth() > THIRTEEN
+            ? date.plusMonths(1).withDayOfMonth(THIRTEEN) : date.withDayOfMonth(THIRTEEN);
 
         while (current.getDayOfWeek() != DayOfWeek.FRIDAY) {
             current = current.plusMonths(1);
