@@ -8,10 +8,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class Task6Test {
     @Test
-    void testGetOldestAnimalsOfTypes_shouldReturnListOldestAnimalsOfTypes() {
+    void testGetHeaviestAnimalsOfTypes_shouldReturnListOldestAnimalsOfTypes() {
         List<Animal> animals = getAnimals();
 
-        Map<Animal.Type, Animal> oldestAnimals = Task6.getOldestAnimalsOfTypes(animals);
+        Map<Animal.Type, Animal> oldestAnimals = Task6.getHeaviestAnimalsOfTypes(animals);
 
         assertThat(oldestAnimals).contains(
             Map.entry(Animal.Type.BIRD, new Animal("Vasya", Animal.Type.BIRD, Animal.Sex.M, 4, 10, 1, false)),

@@ -11,6 +11,6 @@ public final class Task7 {
         // k in 1-first numeration 1, 2, 3 ...
         return animals.stream()
             .sorted(Comparator.comparingInt(Animal::age).reversed()).skip(k - 1)
-            .findAny().orElseThrow();
+            .findFirst().orElseThrow();
     }
 }

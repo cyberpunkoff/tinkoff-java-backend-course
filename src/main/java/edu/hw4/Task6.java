@@ -11,9 +11,9 @@ public final class Task6 {
     private Task6() {
     }
 
-    public static Map<Animal.Type, Animal> getOldestAnimalsOfTypes(List<Animal> animal) {
+    public static Map<Animal.Type, Animal> getHeaviestAnimalsOfTypes(List<Animal> animal) {
         return animal.stream()
             .collect(Collectors.toMap(Animal::type, Function.identity(),
-                BinaryOperator.maxBy(Comparator.comparingInt(Animal::age))));
+                BinaryOperator.maxBy(Comparator.comparingInt(Animal::weight))));
     }
 }
