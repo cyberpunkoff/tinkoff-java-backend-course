@@ -6,9 +6,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import org.apache.commons.io.FilenameUtils;
 
-public class FileCloner {
+public final class FileCloner {
     private static final String FIRST_COPY_PATTERN = "%s — копия";
     private static final String NEXT_COPY_PATTERN = "%s — копия (%d)";
+
+    private FileCloner() {
+    }
 
     public static void clonePath(Path path) {
         Path originalPath = path.toAbsolutePath();

@@ -11,7 +11,7 @@ public abstract class MagicNumberFilter implements AbstractFilter {
         return new MagicNumberFilter() {
             @Override
             public boolean accept(Path path) {
-                byte[] buffer = new byte[4];
+                byte[] buffer = new byte[magicNumber.length];
                 try (InputStream is = new FileInputStream(path.toString())) {
                     if (is.read(buffer) != buffer.length) {
                         return false;

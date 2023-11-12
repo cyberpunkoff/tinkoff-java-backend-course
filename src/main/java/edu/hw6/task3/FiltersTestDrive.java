@@ -9,8 +9,12 @@ import static edu.hw6.task3.filters.FileNameFilter.globMatches;
 import static edu.hw6.task3.filters.FileNameFilter.regexContains;
 import static edu.hw6.task3.filters.FileSizeFilter.largerThan;
 
-public class FiltersTestDrive {
-    public static void main(String[] args) throws IOException {
+public final class FiltersTestDrive {
+    private FiltersTestDrive() {
+    }
+
+    @SuppressWarnings("MagicNumber")
+    public static void run() throws IOException {
         final AbstractFilter regularFile = Files::isRegularFile;
         final AbstractFilter readable = Files::isReadable;
 

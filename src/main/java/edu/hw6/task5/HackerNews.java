@@ -6,13 +6,15 @@ import java.net.URISyntaxException;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class HackerNews {
+public final class HackerNews {
     private static final String ENDPOINT_URL = "https://hacker-news.firebaseio.com/v0";
     private static final String TOP_STORIES_RESOURCE = "/topstories.json";
+
+    private HackerNews() {
+    }
 
     /* <3 */
     public static long[] getHackerNewsTopStories() {
@@ -74,13 +76,5 @@ public class HackerNews {
         } catch (URISyntaxException | InterruptedException e) {
             throw new RuntimeException(e);
         }
-    }
-}
-
-class HackerNewsTestDrive {
-    public static void main(String[] args) {
-        System.out.println(Arrays.toString(HackerNews.hackerNewsTopStories()));
-        String newsTitle = HackerNews.news(37570037);
-        System.out.println(newsTitle);
     }
 }
