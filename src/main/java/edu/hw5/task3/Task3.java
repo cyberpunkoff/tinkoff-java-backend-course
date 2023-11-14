@@ -18,15 +18,11 @@ public final class Task3 {
     }
 
     public static Optional<LocalDate> parseDate(String date) {
-        DateParserProcessor authParseProcessorChain = getChainOfDateParsersProcessor();
+        DateParserProcessor dateParseProcessorChain = getChainOfDateParsersProcessor();
 
-        LocalDate parsed = authParseProcessorChain.parse(date);
+        LocalDate parsed = dateParseProcessorChain.parse(date);
 
-        if (parsed != null) {
-            return Optional.of(parsed);
-        } else {
-            return Optional.empty();
-        }
+        return Optional.ofNullable(parsed);
     }
 
     private static DateParserProcessor getChainOfDateParsersProcessor() {
