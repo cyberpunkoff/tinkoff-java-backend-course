@@ -1,6 +1,10 @@
 package edu.project3;
 
-import java.time.ZonedDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
@@ -9,9 +13,12 @@ import lombok.ToString;
 @Builder
 @ToString
 public class LogRecord {
+    private static final String RECORD_REGEX =
+        "^(?<remoteAddr>[^ ]*) - (?<remoteUser>[^ ]*) \\[(?<time>[^\\]]*)\\] \"(?<request>[^\"]+)\" (?<status>[^ ]*) (?<bodyBytesSent>[^ ]*) \"(?<httpReferer>[^\\\"]*)\" \"(?<httpUserAgent>[^\\\"]*)\"$";
+
     private String remoteAddress;
     private String remoteUser;
-    private ZonedDateTime timeLocal;
+    private OffsetDateTime timeLocal;
     private Request request;
     private int status;
     private long bodyBytesSent;
@@ -19,16 +26,25 @@ public class LogRecord {
     private String httpUserAgent;
 
     public static LogRecord parse(String record) {
-        String[] props = record.split(" ");
+        Pattern logRecordPattern = Pattern.compile(RECORD_REGEX);
+        Matcher logRecordMatcher = logRecordPattern.matcher(record);
+
+        if (!logRecordMatcher.find()) {
+            throw new RuntimeException("Log record parse exception");
+        }
+
+        String pattern = "dd/MMM/yyyy:HH:mm:ss Z";
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(pattern, Locale.US);
+
         return LogRecord.builder()
-            .remoteAddress(props[0])
-            .remoteUser(props[1])
-            .timeLocal(ZonedDateTime.parse(props[2]))
-            .request(Request.parse(props[3]))
-            .status(Integer.parseInt(props[4]))
-            .bodyBytesSent(Long.parseLong(props[5]))
-            .httpReferer(props[6])
-            .httpUserAgent(props[7])
+            .remoteAddress(logRecordMatcher.group("remoteAddr"))
+            .remoteUser(logRecordMatcher.group("remoteUser"))
+            .timeLocal(OffsetDateTime.parse(logRecordMatcher.group("time"), dateTimeFormatter))
+            .request(Request.parse(logRecordMatcher.group("request")))
+            .status(Integer.parseInt(logRecordMatcher.group("status")))
+            .bodyBytesSent(Long.parseLong(logRecordMatcher.group("bodyBytesSent")))
+            .httpReferer(logRecordMatcher.group("httpReferer"))
+            .httpUserAgent(logRecordMatcher.group("httpUserAgent"))
             .build();
     }
 }

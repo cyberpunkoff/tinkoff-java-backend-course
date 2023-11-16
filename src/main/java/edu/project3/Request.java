@@ -12,7 +12,7 @@ public class Request {
         String[] parts = url.split(" ");
         method = parts[0];
         this.url = parts[1];
-        parts = url.split("/");
+        parts = this.url.split("/");
         resource = parts[parts.length - 1];
     }
 
