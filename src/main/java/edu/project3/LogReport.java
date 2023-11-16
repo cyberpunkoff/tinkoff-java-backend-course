@@ -41,9 +41,9 @@ public class LogReport {
 
         logRecords.stream()
             .filter(logRecord ->
-                !logRecord.getTimeLocal().isBefore(OffsetDateTime.of(this.fromDate.atStartOfDay(), ZoneOffset.UTC)) &&
-                    logRecord.getTimeLocal()
-                        .isBefore(OffsetDateTime.of(this.toDate.atStartOfDay(), ZoneOffset.UTC)))
+                !logRecord.getTimeLocal().isBefore(OffsetDateTime.of(this.fromDate.atStartOfDay(), ZoneOffset.UTC))
+                    && logRecord.getTimeLocal()
+                    .isBefore(OffsetDateTime.of(this.toDate.atStartOfDay(), ZoneOffset.UTC)))
             .forEach(logRecord -> {
                 responseCodesCount.merge(logRecord.getStatus(), 1, Integer::sum);
                 requestedResourceCount.merge(logRecord.getRequest().getResource(), 1, Integer::sum);

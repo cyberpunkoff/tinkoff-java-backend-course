@@ -3,7 +3,7 @@ package edu.project3;
 import lombok.Getter;
 
 @Getter
-public class Request {
+public final class Request {
     private final String url;
     private final String method;
     private final String resource;

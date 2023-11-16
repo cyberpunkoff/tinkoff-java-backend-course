@@ -9,7 +9,9 @@ import net.steppschuh.markdowngenerator.text.code.Code;
 import net.steppschuh.markdowngenerator.text.heading.Heading;
 import org.apache.hc.core5.http.impl.EnglishReasonPhraseCatalog;
 
+@SuppressWarnings("MultipleStringLiterals")
 public class MarkdownReportGenerator implements ReportGenerator {
+    public static final int ROW_LIMIT = 4;
     LogReport logReport;
 
     @Override
@@ -20,11 +22,11 @@ public class MarkdownReportGenerator implements ReportGenerator {
 
     private String generateMarkdownReport() {
         StringBuilder report = new StringBuilder()
-            .append(new Heading("Общая информация", 4)).append("\n\n")
+            .append(new Heading("Общая информация", ROW_LIMIT)).append("\n\n")
             .append(buildGeneralInfoTable()).append("\n\n")
-            .append(new Heading("Запрашиваемые ресурсы", 4)).append("\n\n")
+            .append(new Heading("Запрашиваемые ресурсы", ROW_LIMIT)).append("\n\n")
             .append(buildResourceCountTable()).append("\n\n")
-            .append(new Heading("Коды ответа", 4)).append("\n\n")
+            .append(new Heading("Коды ответа", ROW_LIMIT)).append("\n\n")
             .append(buildResponseCodesCountTable());
 
         return report.toString();
@@ -48,7 +50,6 @@ public class MarkdownReportGenerator implements ReportGenerator {
 
         Table.Builder tableBuilder = new Table.Builder()
             .withAlignments(Table.ALIGN_CENTER, Table.ALIGN_RIGHT)
-            .withRowLimit(6)
             .addRow("Метрика", "Значение")
             .addRow(
                 "Файл(-ы)",
@@ -68,7 +69,7 @@ public class MarkdownReportGenerator implements ReportGenerator {
     private String buildResourceCountTable() {
         Table.Builder tableBuilder = new Table.Builder()
             .withAlignments(Table.ALIGN_CENTER, Table.ALIGN_RIGHT)
-            .withRowLimit(4)
+            .withRowLimit(ROW_LIMIT)
             .addRow("Ресурс", "Количество");
 
         for (var entry : logReport.getRequestedResourceCount().entrySet()) {

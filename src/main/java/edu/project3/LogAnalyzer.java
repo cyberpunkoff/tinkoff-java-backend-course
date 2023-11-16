@@ -10,7 +10,8 @@ import java.time.LocalDate;
 import java.util.List;
 import picocli.CommandLine.Option;
 
-public class LogAnalyzer implements Runnable{
+@SuppressWarnings("RegexpSinglelineJava")
+public class LogAnalyzer implements Runnable {
     @Option(names = {"--path"})
     private String path;
     @Option(names = {"--from"})
@@ -40,11 +41,8 @@ public class LogAnalyzer implements Runnable{
         }
 
         List<String> textLogRecords = logLoader.getLogRecords();
-
         List<LogRecord> logRecords = textLogRecords.stream().map(LogRecord::parse).toList();
-
         LogReport logReport = new LogReport(logRecords, from, to, logLoader.getFileNames());
-
         System.out.println(reportGenerator.generateReport(logReport));
     }
 }

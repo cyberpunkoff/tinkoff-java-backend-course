@@ -12,7 +12,7 @@ public final class UrlUtils {
         try {
             new URI(url).toURL();
             return true;
-        } catch (MalformedURLException | URISyntaxException e) {
+        } catch (MalformedURLException | URISyntaxException | RuntimeException e) {
             return false;
         }
     }

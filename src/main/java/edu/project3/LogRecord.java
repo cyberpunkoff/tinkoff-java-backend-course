@@ -13,6 +13,7 @@ import lombok.ToString;
 @Builder
 @ToString
 public class LogRecord {
+    @SuppressWarnings("LineLength")
     private static final String RECORD_REGEX =
         "^(?<remoteAddr>[^ ]*) - (?<remoteUser>[^ ]*) \\[(?<time>[^\\]]*)\\] \"(?<request>[^\"]+)\" (?<status>[^ ]*) (?<bodyBytesSent>[^ ]*) \"(?<httpReferer>[^\\\"]*)\" \"(?<httpUserAgent>[^\\\"]*)\"$";
 
@@ -25,9 +26,9 @@ public class LogRecord {
     private String httpReferer;
     private String httpUserAgent;
 
-    public static LogRecord parse(String record) {
+    public static LogRecord parse(String logRecord) {
         Pattern logRecordPattern = Pattern.compile(RECORD_REGEX);
-        Matcher logRecordMatcher = logRecordPattern.matcher(record);
+        Matcher logRecordMatcher = logRecordPattern.matcher(logRecord);
 
         if (!logRecordMatcher.find()) {
             throw new RuntimeException("Log record parse exception");

@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 import net.steppschuh.markdowngenerator.text.code.Code;
 import org.apache.hc.core5.http.impl.EnglishReasonPhraseCatalog;
 
+@SuppressWarnings("MultipleStringLiterals")
 public class AdocReportGenerator implements ReportGenerator {
+    public static final int ROW_LIMIT = 3;
     private LogReport logReport;
 
     @Override
@@ -74,7 +76,7 @@ public class AdocReportGenerator implements ReportGenerator {
         int i = 0;
 
         for (var entry : logReport.getRequestedResourceCount().entrySet()) {
-            if (i == 3) {
+            if (i == ROW_LIMIT) {
                 break;
             } else {
                 i++;
