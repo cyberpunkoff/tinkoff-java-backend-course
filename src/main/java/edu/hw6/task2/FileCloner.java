@@ -1,7 +1,6 @@
 package edu.hw6.task2;
 
 import java.io.IOException;
-import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import org.apache.commons.io.FilenameUtils;
@@ -15,20 +14,19 @@ public final class FileCloner {
 
     public static void clonePath(Path path) {
         Path originalPath = path.toAbsolutePath();
+        Path copy = path.toAbsolutePath();
         int copyCount = 1;
-        boolean copyMade = false;
 
-        while (!copyMade) {
-            try {
-                String newFileName = generateNewFilename(originalPath.getFileName().toString(), copyCount);
-                Path copy = originalPath.getParent().resolve(newFileName);
-                Files.copy(originalPath, copy);
-                copyMade = true;
-            } catch (FileAlreadyExistsException e) {
-                copyCount++;
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+        while (Files.exists(copy)) {
+            String newFileName = generateNewFilename(originalPath.getFileName().toString(), copyCount);
+            copy = originalPath.getParent().resolve(newFileName);
+            copyCount++;
+        }
+
+        try {
+            Files.copy(originalPath, copy);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
