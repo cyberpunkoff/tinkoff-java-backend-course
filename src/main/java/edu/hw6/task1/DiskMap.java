@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class DiskMap extends HashMap<String, String> implements Map<String, String> {
-    public static final String FILE_NAME = "data.txt";
+    public static final String FILE_NAME = "src/main/resources/edu/hw6/task1/data.txt";
     public static final String DELIMITER = ";";
 
-    private DiskMap() {
+    public DiskMap() {
     }
 
     public void save() {

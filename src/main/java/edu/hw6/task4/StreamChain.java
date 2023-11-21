@@ -12,7 +12,7 @@ import java.util.zip.CRC32;
 import java.util.zip.CheckedOutputStream;
 
 public class StreamChain {
-    public static final String FILE_NAME = "out.txt";
+    public static final String FILE_NAME = "src/main/resources/edu/hw6/out.txt";
     public static final String MESSAGE = "Programming is learned by writing programs. ― Brian Kernighan";
 
     void build() {

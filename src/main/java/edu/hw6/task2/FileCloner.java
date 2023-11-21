@@ -34,7 +34,7 @@ public final class FileCloner {
 
     private static String generateNewFilename(String oldName, int copyCount) {
         String extension = FilenameUtils.getExtension(oldName);
-        String fileName = FilenameUtils.getName(oldName);
+        String fileName = FilenameUtils.removeExtension(oldName);
         StringBuilder result = new StringBuilder();
 
         if (copyCount == 1) {
