@@ -9,7 +9,6 @@ public abstract class FileSizeFilter implements AbstractFilter {
         return new FileSizeFilter() {
             @Override
             public boolean accept(Path path) {
-                // блинб.. как бы тут исключение пробросить..
                 try {
                     long bytes = Files.size(path);
                     return bytes  > sizeInBytes;
