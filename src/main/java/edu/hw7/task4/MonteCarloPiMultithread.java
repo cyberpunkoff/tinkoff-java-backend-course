@@ -58,8 +58,10 @@ public class MonteCarloPiMultithread {
                     localTotalCount++;
             }
 
-            totalCount = localTotalCount;
-            circleCount = localCircleCount;
+            synchronized (this) {
+                totalCount += localTotalCount;
+                circleCount += localCircleCount;
+            }
         };
     }
 
