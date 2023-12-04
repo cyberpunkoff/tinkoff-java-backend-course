@@ -2,7 +2,7 @@ package edu.hw8.task3;
 
 import edu.hw8.task3.cracker.AbstractPasswordCracker;
 import edu.hw8.task3.cracker.PasswordCracker;
-import edu.hw8.task3.source.FilePasswordSource;
+import edu.hw8.task3.source.GeneratorPasswordSource;
 import edu.hw8.task3.source.PasswordSource;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -18,13 +18,13 @@ public class PasswordRecoveryTest {
             "k.p.maslov", "5f4dcc3b5aa765d61d8327deb882cf99"
         );
 
-//        PasswordSource passwordSource = GeneratorPasswordSource.builder()
-//            .includeLowerCase(false)
-//            .passwordLength(8)
-//            .includeNumbers(true)
-//            .build();
+        PasswordSource passwordSource = GeneratorPasswordSource.builder()
+            .includeLowerCase(false)
+            .passwordLength(3)
+            .includeNumbers(true)
+            .build();
 
-        PasswordSource passwordSource = new FilePasswordSource("rockyou.txt");
+//        PasswordSource passwordSource = new FilePasswordSource("rockyou.txt");
 
 
         AbstractPasswordCracker passwordCracker = new PasswordCracker(dbDump, passwordSource);
