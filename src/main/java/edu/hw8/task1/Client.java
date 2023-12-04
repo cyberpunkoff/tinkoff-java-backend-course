@@ -8,7 +8,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
-    public static final int SERVER_PORT = 8080;
+    public static final int SERVER_PORT = 54123;
 
     public String getInsult(String keyWord) {
         try (Socket server = new Socket(InetAddress.getLocalHost(), SERVER_PORT);
