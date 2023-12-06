@@ -9,7 +9,7 @@ import java.util.concurrent.RecursiveTask;
 import java.util.stream.Stream;
 
 public class DirectorySearchTask extends RecursiveTask<List<Path>> {
-    public static int TARGET_FILES_COUNT = 3;
+    public static final int TARGET_FILES_COUNT = 3;
     private Path path;
 
     public DirectorySearchTask(Path path) {
@@ -27,9 +27,9 @@ public class DirectorySearchTask extends RecursiveTask<List<Path>> {
 
         try (Stream<Path> entries = Files.list(path)) {
             int fileCounter = 0;
-            for (var path : entries.toList()) {
-                if (Files.isDirectory(path)) {
-                    DirectorySearchTask subTask = new DirectorySearchTask(path);
+            for (var sub : entries.toList()) {
+                if (Files.isDirectory(sub)) {
+                    DirectorySearchTask subTask = new DirectorySearchTask(sub);
                     subTask.fork();
                     subTasks.add(subTask);
                 } else {

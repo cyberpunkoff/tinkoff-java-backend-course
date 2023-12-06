@@ -8,11 +8,15 @@ import edu.hw9.task1.metric.SumMetric;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.*;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 public class StatsCollector {
-    public static int THREAD_AMOUNT = 4;
+    public static final int THREAD_AMOUNT = 4;
     Map<String, CompletableFuture<String>> stats = new ConcurrentHashMap<>();
     List<Metric<Number>> metrics = List.of(
         new AverageMetric<>(),
@@ -35,7 +39,7 @@ public class StatsCollector {
                 )).toArray(CompletableFuture[]::new);
         var result = CompletableFuture.allOf(task)
             .thenApply((ignored) ->
-                 Arrays.stream(task).map((e) -> {
+                Arrays.stream(task).map((e) -> {
                     try {
                         return e.get().toString();
                     } catch (ExecutionException | InterruptedException ex) {

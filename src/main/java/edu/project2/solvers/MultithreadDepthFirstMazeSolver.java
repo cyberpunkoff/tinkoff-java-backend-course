@@ -22,7 +22,7 @@ public class MultithreadDepthFirstMazeSolver implements MazeSolver {
         this.start = maze.getCell(1, 1);
         this.target = maze.getCell(maze.getWidth() - 2, maze.getHeight() - 2);
 
-        try(ForkJoinPool forkJoinPool = new ForkJoinPool()) {
+        try (ForkJoinPool forkJoinPool = new ForkJoinPool()) {
             forkJoinPool.invoke(new RecursiveMazeSolver(start));
         }
 

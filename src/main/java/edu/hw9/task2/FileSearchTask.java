@@ -27,14 +27,14 @@ public class FileSearchTask extends RecursiveTask<List<Path>>  {
         List<Path> found = new ArrayList<>();
         List<FileSearchTask> subTasks = new ArrayList<>();
         try (Stream<Path> entries = Files.list(path)) {
-            for (var path : entries.toList()) {
-                if (Files.isDirectory(path)) {
-                    FileSearchTask subTask = new FileSearchTask(path, predicates);
+            for (var sub : entries.toList()) {
+                if (Files.isDirectory(sub)) {
+                    FileSearchTask subTask = new FileSearchTask(sub, predicates);
                     subTask.fork();
                     subTasks.add(subTask);
                 } else {
-                    if (predicates.stream().allMatch(p -> p.test(path))) {
-                        found.add(path);
+                    if (predicates.stream().allMatch(p -> p.test(sub))) {
+                        found.add(sub);
                     }
                 }
             }

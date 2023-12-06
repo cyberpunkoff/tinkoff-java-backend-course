@@ -2,7 +2,7 @@ package edu.hw9.task1.metric;
 
 import java.util.Arrays;
 
-public class MinMetric <T extends Number> implements Metric<T> {
+public class MinMetric<T extends Number> implements Metric<T> {
     @Override
     public String getName() {
         return "min";
