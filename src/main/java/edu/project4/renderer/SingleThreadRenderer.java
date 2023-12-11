@@ -20,7 +20,7 @@ public class SingleThreadRenderer implements Renderer {
         List<ColorTransformation> affine,
         int samples,
         short iterPerSample,
-        long seed
+        long symmetry
     ) {
         for (int num = 0; num < samples; ++num) {
             Random random = new Random();
@@ -39,20 +39,25 @@ public class SingleThreadRenderer implements Renderer {
                 point = affineTransformation.apply(point);
                 point = variation.apply(point);
 
-                if (world.contains(point) && step >= 0) {
-                    int x = map(canvas.width(), world.x(), world.x() + world.width(), point.x());
-                    int y = map(canvas.height(), world.y(), world.y() + world.height(), point.y());
+                double theta2 = 0.0;
+                for (int s = 0; s < symmetry; theta2 += Math.PI * 2 / symmetry, ++s) {
+                    point = rotate(point, theta2);
 
-                    if (x < canvas.width() && y < canvas.height()) {
-                        if (canvas.contains(x, y)) {
-                            Pixel oldPixel = canvas.pixel(x, y);
+                    if (world.contains(point) && step >= 0) {
+                        int x = map(canvas.width(), world.x(), world.x() + world.width(), point.x());
+                        int y = map(canvas.height(), world.y(), world.y() + world.height(), point.y());
 
-                            Pixel newPixel = affineTransformation.applyColor(oldPixel);
-                            canvas.setPixel(x, y, newPixel);
-                        } else {
-                            canvas.setPixel(x, y, new Pixel(affineTransformation.r, affineTransformation.g,
-                                affineTransformation.b, 1
-                            ));
+                        if (x < canvas.width() && y < canvas.height()) {
+                            if (canvas.contains(x, y)) {
+                                Pixel oldPixel = canvas.pixel(x, y);
+
+                                Pixel newPixel = affineTransformation.applyColor(oldPixel);
+                                canvas.setPixel(x, y, newPixel);
+                            } else {
+                                canvas.setPixel(x, y, new Pixel(affineTransformation.r, affineTransformation.g,
+                                    affineTransformation.b, 1
+                                ));
+                            }
                         }
                     }
                 }
@@ -79,5 +84,11 @@ public class SingleThreadRenderer implements Renderer {
         return size - (int) Math.ceil(
             (max - point) / (max - min) * size
         );
+    }
+
+    private Point rotate(Point pw, double theta) {
+        double xNew = pw.x() * Math.cos(theta) - pw.y() * Math.sin(theta);
+        double yNew = pw.x() * Math.sin(theta) + pw.y() * Math.cos(theta);
+        return new Point(xNew, yNew);
     }
 }
