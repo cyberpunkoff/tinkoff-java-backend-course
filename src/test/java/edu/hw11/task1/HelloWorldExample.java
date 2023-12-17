@@ -1,4 +1,4 @@
-package edu.hw11;
+package edu.hw11.task1;
 
 import net.bytebuddy.ByteBuddy;
 import net.bytebuddy.dynamic.loading.ClassLoadingStrategy;
