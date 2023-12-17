@@ -1,6 +1,4 @@
-package edu.hw10;
-
-import edu.hw10.task1.Min;
+package edu.hw10.task1;
 
 public class Car {
     @Min(200)

@@ -1,4 +1,4 @@
-package edu.hw10;
+package edu.hw10.task1;
 
 import edu.hw10.task1.Max;
 import edu.hw10.task1.Min;

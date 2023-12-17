@@ -1,6 +1,5 @@
-package edu.hw10;
+package edu.hw10.task1;
 
-import edu.hw10.task1.RandomObjectGenerator;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
