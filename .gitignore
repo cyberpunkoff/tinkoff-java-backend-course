@@ -30,8 +30,7 @@ build/
 
 ### VS Code ###
 .vscode/
-
-### Project specific files ###
-data.txt
+/data.txt
+/src/main/resources/edu/hw6/task1/data.txt
 /src/main/java/edu/hw6/task5/Main.java
 /src/main/java/edu/hw6/task6/Main.java
